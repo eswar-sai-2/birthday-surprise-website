@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#2a0a3a" />
+  <meta name="description" content="A premium birthday surprise made with love for someone very special." />
+  <title>A Special Surprise ❤️</title>
+
+  <!-- Elegant typography: display serif for headings, clean sans for body, script for the letter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ============================================================= -->
+  <!-- Background layers shared across all screens                    -->
+  <!-- ============================================================= -->
+  <div class="bg-aurora" aria-hidden="true"></div>
+  <div class="bg-stars" id="starsLayer" aria-hidden="true"></div>
+  <div class="bg-hearts" id="heartsLayer" aria-hidden="true"></div>
+
+  <!-- Background music (drop your own file at music/song.mp3 to replace) -->
+  <audio id="bgMusic" loop preload="none">
+    <source src="music/birthday.mp3" type="audio/mpeg" />
+  </audio>
+
+
+  <!-- Floating music toggle -->
+  <button id="musicToggle" class="music-toggle" aria-label="Toggle background music" title="Play music">
+    <span class="music-icon">♪</span>
+  </button>
+
+  <!-- ============================================================= -->
+  <!-- Loading screen                                                 -->
+  <!-- ============================================================= -->
+  <div id="loader" class="loader">
+    <div class="loader-heart">❤</div>
+    <p class="loader-text">Wrapping your surprise with love…</p>
+    <div class="loader-bar"><span></span></div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- Screen 1 – Welcome                                             -->
+  <!-- ============================================================= -->
+  <section class="screen active" id="screen-1" data-screen="1">
+    <div class="screen-inner">
+      <p class="eyebrow reveal">A gift made with love</p>
+      <div class="giftbox reveal" id="giftbox" role="button" tabindex="0" aria-label="Open your gift">
+        <div class="giftbox-lid">
+          <div class="giftbox-bow"></div>
+        </div>
+        <div class="giftbox-body">
+          <div class="giftbox-ribbon-v"></div>
+        </div>
+        <div class="giftbox-glow"></div>
+      </div>
+      <h1 class="title reveal">A Special Surprise<br />Awaits You ❤️</h1>
+      <button class="btn btn-primary reveal" id="openGiftBtn">Open Your Gift</button>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- Screen 2 – Gift Opening                                        -->
+  <!-- ============================================================= -->
+  <section class="screen" id="screen-2" data-screen="2">
+    <div class="screen-inner">
+      <div class="opening-stage" id="openingStage">
+        <div class="giftbox giftbox--opening" id="giftboxOpening">
+          <div class="giftbox-lid">
+            <div class="giftbox-bow"></div>
+          </div>
+          <div class="giftbox-body">
+            <div class="giftbox-ribbon-v"></div>
+          </div>
+          <div class="giftbox-glow"></div>
+        </div>
+        <div class="burst" id="burst"></div>
+      </div>
+      <p class="opening-caption" id="openingCaption">✨ Unwrapping something magical ✨</p>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+<!-- Screen 3 – Countdown -->
+<!-- ============================================================= -->
+<section class="screen" id="screen-3" data-screen="3">
+
+    <div class="countdown-container">
+
+        <h2 class="count-title">
+            ✨ Get Ready... ✨
+        </h2>
+
+        <div id="countNumber" class="count-number">
+            3
+        </div>
+
+    </div>
+
+</section>
+
+  <!-- ============================================================= -->
+  <!-- Screen 4 – Birthday Verification                               -->
+  <!-- ============================================================= -->
+  <section class="screen" id="screen-4" data-screen="4">
+    <div class="screen-inner">
+      <div class="glass-card lock-card">
+        <div class="lock-icon" id="lockIcon">🔐</div>
+        <h2 class="subtitle">One Little Secret First</h2>
+        <p class="muted">To unlock your surprise, tell me your date of birth ❤️</p>
+        <div class="dob-fields">
+          <input type="number" id="dobDay" class="dob-input" placeholder="DD" min="1" max="31" inputmode="numeric" aria-label="Day" />
+          <input type="number" id="dobMonth" class="dob-input" placeholder="MM" min="1" max="12" inputmode="numeric" aria-label="Month" />
+          <input type="number" id="dobYear" class="dob-input dob-input--year" placeholder="YYYY" min="1900" max="2025" inputmode="numeric" aria-label="Year" />
+        </div>
+        <button class="btn btn-primary" id="unlockBtn">Unlock ❤️</button>
+        <p class="error-msg" id="dobError" role="alert"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- Screen 5 – Birthday Welcome                                    -->
+  <!-- ============================================================= -->
+  <section class="screen" id="screen-5" data-screen="5">
+    <div class="balloons" id="balloons5" aria-hidden="true"></div>
+    <div class="screen-inner">
+      <p class="eyebrow reveal">The moment is here</p>
+      <h1 class="title title--xl reveal">🎉 Happy Birthday</h1>
+      <h2 class="script-heading reveal">My Dear Akka ❤️</h2>
+      <button class="btn btn-primary reveal" data-next>Continue the Magic →</button>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- Screen 6 – Childhood Memory                                    -->
+  <!-- ============================================================= -->
+  <section class="screen" id="screen-6" data-screen="6">
+    <div class="screen-inner">
+      <div class="polaroid reveal-zoom">
+        <div class="polaroid-photo">
+          <img src="images/childhood.png" alt="A treasured childhood photo — replace with your own" />
+        </div>
+        <p class="polaroid-caption">Once upon a time…</p>
+      </div>
+      <p class="memory-caption reveal">Every beautiful journey begins with precious memories.</p>
+      <button class="btn btn-ghost reveal" data-next>Next →</button>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- Screen 7 – Recent Memory                                       -->
+  <!-- ============================================================= -->
+  <section class="screen" id="screen-7" data-screen="7">
+    <div class="screen-inner">
+      <div class="glow-frame reveal-zoom">
+        <img src="images/recent.png" alt="A recent photo — replace with your own" />
+        <div class="glow-frame-hearts" aria-hidden="true">
+          <span>❤</span><span>❤</span><span>❤</span>
+        </div>
+      </div>
+      <p class="memory-caption reveal">You&apos;ve grown into an amazing and wonderful person.</p>
+      <button class="btn btn-ghost reveal" data-next>Next →</button>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- Screen 8 – Emotional Letter                                    -->
+  <!-- ============================================================= -->
+  <section class="screen" id="screen-8" data-screen="8">
+    <div class="screen-inner">
+      <div class="letter-paper reveal">
+        <h2 class="letter-title">To My Dear Akka ❤️</h2>
+        <p class="letter-body" id="letterText"></p>
+        <p class="letter-sign" id="letterSign"></p>
+      </div>
+      <button class="btn btn-primary reveal" data-next id="letterNext">Continue →</button>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- Screen 9 – Birthday Cake                                       -->
+  <!-- ============================================================= -->
+  <section class="screen" id="screen-9" data-screen="9">
+    <div class="screen-inner">
+      <h2 class="subtitle reveal">Make a Wish ❤️</h2>
+      <p class="muted reveal" id="cakeHint">Tap each candle to blow it out…</p>
+      <div class="cake-wrap reveal" id="cakeWrap">
+        <div class="cake">
+          <div class="cake-plate"></div>
+          <div class="cake-layer cake-layer--bottom"></div>
+          <div class="cake-layer cake-layer--middle"></div>
+          <div class="cake-layer cake-layer--top"></div>
+          <div class="candles" id="candles"></div>
+        </div>
+      </div>
+      <button class="btn btn-primary hidden" id="cakeNext" data-next>See the Celebration →</button>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- Screen 10 – Grand Celebration                                   -->
+  <!-- ============================================================= -->
+  <section class="screen" id="screen-10" data-screen="10">
+    <canvas id="fireworks" class="fireworks-canvas" aria-hidden="true"></canvas>
+    <div class="balloons" id="balloons10" aria-hidden="true"></div>
+    <div class="screen-inner">
+      <h1 class="title title--xl reveal glitter">🎉 Happy Birthday 🎉</h1>
+      <p class="script-heading reveal">Let the celebration begin!</p>
+      <button class="btn btn-ghost reveal" data-next>One Last Thing ❤️</button>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- Screen 11 – Final Page                                         -->
+  <!-- ============================================================= -->
+ <section class="screen" id="screen-11" data-screen="11">
+
+    <div class="screen-inner">
+
+        <div class="glass-card final-card reveal">
+
+            <h2 class="script-heading final-thanks final-floating">
+                Thank You ❤️
+            </h2>
+
+            <p class="final-lead">
+                For Being Such a Wonderful Person ❤️
+            </p>
+
+            <p class="final-text">
+
+                Thank you for taking the time to go through this little surprise.
+
+                Every animation, every screen, every little detail was created with respect and heartfelt birthday wishes.
+
+                I hope this made your special day even more memorable.
+
+                Wishing you happiness, success, good health and countless beautiful memories.
+
+                Happy Birthday once again, Akka! ❤️🎂
+
+            </p>
+
+            <p class="final-quote">
+
+                "Some people make the world brighter simply by being in it." ✨
+
+            </p>
+
+           <button id="replayBtn" class="btn btn-primary">
+             Replay the Surprise ❤️
+           </button>  
+
+        </div>
+
+    </div>
+
+</section>
+
+  <!-- Progress dots -->
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
